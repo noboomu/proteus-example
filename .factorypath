@@ -1,0 +1,6 @@
+<factorypath>
+    <factorypathentry kind="EXTJAR" id="/Users/jbauer/.m2/repository/io/ebean/ebean/10.2.2/ebean-10.2.2.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="/Users/jbauer/.m2/repository/io/ebean/persistence-api/2.2.1/persistence-api-2.2.1.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="/Users/jbauer/.m2/repository/io/ebean/querybean-generator/10.2.1/querybean-generator-10.2.1.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="/Users/jbauer/.m2/repository/io/ebean/ebean-annotation/2.3/ebean-annotation-2.3.jar" enabled="true" runInBatchMode="false"/>
+</factorypath>
