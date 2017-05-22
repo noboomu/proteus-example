@@ -120,7 +120,6 @@ public class EbeanModule extends AbstractModule
 		config.addDataSourceProperty("CacheCallableStmts", useCacheCallableStmts);
 		config.addDataSourceProperty("PrepStmtCacheSize", prepStmtCacheSize);
 		config.addDataSourceProperty("PrepStmtCacheSqlLimit", prepStmtCacheSqlLimit);
-		config.addDataSourceProperty("mysqlx.useAsyncProtocol",true);
 		config.addDataSourceProperty("serverTimezone",serverTimeZone);
 
 		
