@@ -7,6 +7,7 @@ import static io.sinistral.proteus.server.ServerResponse.response;
 
 import java.nio.ByteBuffer;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +33,7 @@ import io.sinistral.example.models.User;
 import io.sinistral.example.models.World;
 import io.sinistral.example.wrappers.AccessLogWrapper;
 import io.sinistral.example.wrappers.DummyWrapper;
-import io.sinistral.proteus.annotations.Chain; 
+import io.sinistral.proteus.annotations.Chain;
 import io.sinistral.proteus.server.ServerRequest;
 import io.sinistral.proteus.server.ServerResponse;
 import io.swagger.annotations.Api;
@@ -90,9 +91,25 @@ public class Examples
 	@Path("/world")
 	@Produces((MediaType.APPLICATION_JSON)) 
 	@ApiOperation(value = "Return a random world instance",   httpMethod = "GET", response=World.class )
-	public io.sinistral.proteus.server.ServerResponse<World> randomWorld(Integer id,  Integer randomNumber )
+	public io.sinistral.proteus.server.ServerResponse<World> randomWorld(  Integer id,  Integer randomNumber )
 	{ 
 		return io.sinistral.proteus.server.ServerResponse.response().entity(new World(id,randomNumber));
+	}
+	
+	@GET
+	@Path("/worlds")
+	@Produces((MediaType.APPLICATION_JSON)) 
+	@ApiOperation(value = "Return a list of random world instances",   httpMethod = "GET", response=World.class, responseContainer="list" )
+	public io.sinistral.proteus.server.ServerResponse<List<World>> randomWorlds(   List<Integer> ids,  Integer randomNumber )
+	{ 
+		List<World> worlds = new ArrayList<>();
+		
+		for( Integer id : ids )
+		{
+			worlds.add(new World(id,randomNumber));
+		}
+		
+		return io.sinistral.proteus.server.ServerResponse.response().entity(worlds);
 	}
 	
 	@GET
@@ -106,7 +123,7 @@ public class Examples
 	@GET
 	@Path("/ebean/fortune/{fortuneId}")
 	@ApiOperation(value = "Ebean fortune",   httpMethod = "GET" )
-	public ServerResponse<Fortune> ebeanFortune( @PathParam("fortuneId") Long fortuneId )
+	public ServerResponse<Fortune> ebeanFortune(  Long fortuneId )
 	{ 
 		Fortune fortune = Fortune.find.byId(fortuneId);
 		

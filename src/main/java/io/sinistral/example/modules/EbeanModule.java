@@ -44,10 +44,10 @@ public class EbeanModule extends AbstractModule
 	@Inject
 	@Named("mysql.hikaricp.password")
 	protected String password;
-	
+	 
 	@Inject
-	@Named("mysql.hikaricp.dataSourceClassName")
-	protected String dataSourceClassName;
+	@Named("mysql.hikaricp.driverClassName")
+	protected String driverClassName;
 	
 	@Inject
 	@Named("mysql.hikaricp.ds.databaseName")
@@ -72,6 +72,10 @@ public class EbeanModule extends AbstractModule
 	@Inject
 	@Named("mysql.hikaricp.ds.useServerPrepStmts")
 	protected Boolean useServerPrepStmts;
+	
+	@Inject
+	@Named("mysql.hikaricp.ds.serverTimeZone")
+	protected String serverTimeZone;
 	
 	@Inject
 	@Named("mysql.hikaricp.ds.cachePrepStmts")
@@ -107,6 +111,7 @@ public class EbeanModule extends AbstractModule
 		config.setUsername(username);
 		config.setPassword(password); 
 		config.setMinimumIdle(minimumIdle);
+		config.setDriverClassName(driverClassName);
 		config.setMaximumPoolSize(maximumPoolSize);
 		config.addDataSourceProperty("databaseName", databaseName);
 		config.addDataSourceProperty("useSSL",false);
@@ -115,6 +120,10 @@ public class EbeanModule extends AbstractModule
 		config.addDataSourceProperty("CacheCallableStmts", useCacheCallableStmts);
 		config.addDataSourceProperty("PrepStmtCacheSize", prepStmtCacheSize);
 		config.addDataSourceProperty("PrepStmtCacheSqlLimit", prepStmtCacheSqlLimit);
+		config.addDataSourceProperty("mysqlx.useAsyncProtocol",true);
+		config.addDataSourceProperty("serverTimezone",serverTimeZone);
+
+		
 
 		this.ds = new HikariDataSource(config);
 		
