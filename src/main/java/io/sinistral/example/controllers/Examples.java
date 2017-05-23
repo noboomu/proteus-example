@@ -39,17 +39,19 @@ import io.sinistral.proteus.server.ServerResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.Authorization;
+import io.swagger.annotations.ResponseHeader;
 import io.undertow.server.HttpServerExchange;
+import io.undertow.util.HttpString;
 
 
 /**
- * Much of this borrowed with reverence from Light-Java
- * 
  * @author jbauer
  *
  */
 
-@Api(tags="examples")
+@Api(tags = "examples",
+authorizations = {@Authorization(value = "default-api-key")} )
 @Path("/examples")
 @Produces((MediaType.APPLICATION_JSON)) 
 @Consumes((MediaType.WILDCARD)) 
@@ -122,12 +124,25 @@ public class Examples
 	
 	@GET
 	@Path("/ebean/fortune/{fortuneId}")
-	@ApiOperation(value = "Ebean fortune",   httpMethod = "GET" )
-	public ServerResponse<Fortune> ebeanFortune(  Long fortuneId )
+	@ApiOperation(value = "Ebean fortune",   httpMethod = "GET" ,
+			 responseHeaders = @ResponseHeader(name = "X-Rack-Cache", description = "Explains whether or not a cache was used", response = Boolean.class)
+			 )
+	public ServerResponse<Fortune> ebeanFortune( Long fortuneId )
 	{ 
 		Fortune fortune = Fortune.find.byId(fortuneId);
 		
-		return response(fortune).applicationJson();
+		ServerResponse<Fortune> response = response(fortune)
+				.header(HttpString.tryFromString("X-Rack-Cache"), "false")
+				.applicationJson();
+		
+		if(fortune == null)
+		{
+			return response.notFound();
+		} 
+		else
+		{
+			return response;
+		}
 	}
 	
 	@GET
