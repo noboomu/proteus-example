@@ -94,8 +94,8 @@
 					<executable>java</executable>
 					<arguments>
 						<argument>-Dlogback.configurationFile=${project.build.directory}/conf/logback.xml</argument>
-						<argument>-Xms128g</argument>
-						<argument>-Xmx512g</argument>
+						<argument>-Xms128m</argument>
+						<argument>-Xmx512m</argument>
 						<argument>-classpath</argument>
 						<classpath />
 						<argument>io.sinistral.example.ExampleApplication</argument>
