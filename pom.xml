@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
@@ -13,17 +14,6 @@
 				<directory>src/main/resources</directory>
 			</resource>
 		</resources>
-		<testResources>
-			<testResource>
-				<directory>src/test/resources</directory>
-			</testResource>
-			<testResource>
-				<directory>src/test/java</directory>
-				<excludes>
-					<exclude>**/*.java</exclude>
-				</excludes>
-			</testResource>
-		</testResources>
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -40,19 +30,12 @@
 										<versionRange>[3.3,)</versionRange>
 										<goals>
 											<goal>compile</goal>
-											<goal>testCompile</goal>
 										</goals>
 									</pluginExecutionFilter>
-
 									<action>
 										<execute />
 									</action>
 								</pluginExecution>
-								<!-- <pluginExecution> <pluginExecutionFilter> <groupId>com.fizzed</groupId> 
-									<artifactId>rocker-maven-plugin</artifactId> <versionRange>[${rocker.version},)</versionRange> 
-									<goals> <goal>generate</goal> </goals> </pluginExecutionFilter> <action> 
-									<execute> <runOnIncremental>true</runOnIncremental> </execute> </action> 
-									</pluginExecution> -->
 							</pluginExecutions>
 						</lifecycleMappingMetadata>
 					</configuration>
@@ -67,9 +50,7 @@
 					<source>1.8</source>
 					<target>1.8</target>
 					<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
 					<compilerArgument>-parameters</compilerArgument>
-
 				</configuration>
 			</plugin>
 			<plugin>
@@ -92,22 +73,6 @@
 							</resources>
 						</configuration>
 					</execution>
-					<execution>
-						<id>copy-asset-resources</id>
-						<phase>validate</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${project.build.directory}/assets</outputDirectory>
-							<resources>
-								<resource>
-									<directory>assets</directory>
-									<filtering>true</filtering>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
 				</executions>
 			</plugin>
 
@@ -122,25 +87,23 @@
 						</goals>
 					</execution>
 				</executions>
-				<configuration>
+				 
+				 
+				 <configuration>
+				 <successCodes>0,137</successCodes>
 					<executable>java</executable>
 					<arguments>
 						<argument>-Dlogback.configurationFile=${project.build.directory}/conf/logback.xml</argument>
-						<argument>-Xbootclasspath/p:lib/alpn-boot-8.1.11.v20170118.jar</argument>
-						<argument>-Xms1g</argument>
-						<argument>-Xmx2g</argument>
-						<argument>-XX:+AggressiveOpts</argument>
-						<argument>-XX:-UseBiasedLocking</argument>
-						<argument>-XX:+UseStringDeduplication</argument>
+						<argument>-Xms128g</argument>
+						<argument>-Xmx512g</argument>
 						<argument>-classpath</argument>
-						<!-- automatically creates the classpath using all project dependencies, 
-							also adding the project build directory -->
 						<classpath />
 						<argument>io.sinistral.example.ExampleApplication</argument>
-
 					</arguments>
-
-				</configuration>
+						</configuration>  
+ 
+				
+			 
 			</plugin>
 			<plugin>
 				<artifactId>maven-dependency-plugin</artifactId>
@@ -156,8 +119,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
-				<!-- Build an executable JAR -->
+			<plugin> 
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>3.0.2</version>
@@ -171,81 +133,14 @@
 					</archive>
 				</configuration>
 			</plugin>
-			<!-- <plugin> <groupId>com.fizzed</groupId> <artifactId>rocker-maven-plugin</artifactId> 
-				<version>0.18.0</version> <executions> <execution> <id>generate-rocker-templates</id> 
-				<phase>generate-sources</phase> <goals> <goal>generate</goal> </goals> <configuration> 
-				<outputDirectory>${project.basedir}/src</outputDirectory> </configuration> 
-				</execution> </executions> </plugin> -->
-			<plugin>
-				<groupId>io.repaint.maven</groupId>
-				<artifactId>tiles-maven-plugin</artifactId>
-				<version>2.8</version>
-				<extensions>true</extensions>
-				<configuration>
-					<tiles>
-						<!-- other tiles ... -->
-						<tile>org.avaje.ebean.tile:enhancement:1.1</tile>
-					</tiles>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
 	<dependencies>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.mortbay.jetty.alpn</groupId>
-			<artifactId>alpn-boot</artifactId>
-			<version>8.1.11.v20170118</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
 			<groupId>io.sinistral</groupId>
 			<artifactId>proteus-core</artifactId>
-			<version>0.1.3-SNAPSHOT</version>
-
+			<version>0.3.3-SNAPSHOT</version>
 		</dependency>
-		<dependency>
-			<groupId>com.fizzed</groupId>
-			<artifactId>rocker-runtime</artifactId>
-			<version>0.18.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fizzed</groupId>
-			<artifactId>rocker-compiler</artifactId>
-			<version>0.18.0</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>com.zaxxer</groupId>
-			<artifactId>HikariCP</artifactId>
-			<version>2.6.1</version>
-		</dependency>
-		<dependency>
-			<groupId>io.ebean</groupId>
-			<artifactId>ebean</artifactId>
-			<version>10.2.2</version>
-		</dependency>
-		<dependency>
-			<groupId>io.ebean</groupId>
-			<artifactId>ebean-querybean</artifactId>
-			<version>10.2.1</version>
-		</dependency>
-			<dependency>
-				<groupId>io.ebean</groupId>
-				<artifactId>querybean-generator</artifactId>
-				<version>10.2.1</version>
-			</dependency>
-			<dependency>
-				<groupId>mysql</groupId>
-				<artifactId>mysql-connector-java</artifactId>
-				<version>6.0.6</version>
-			</dependency>
 	</dependencies>
 	<properties>
 		<rocker.version>0.18.0</rocker.version>

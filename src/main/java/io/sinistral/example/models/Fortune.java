@@ -5,20 +5,15 @@ package io.sinistral.example.models;
 
 import java.util.Random;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-import io.ebean.Model;
-
 /**
  * @author jbauer
  *
  */
-@Entity
-public class Fortune extends Model implements Comparable<Fortune> {
+public class Fortune implements Comparable<Fortune> {
 
-	public static final io.ebean.Finder<Long, Fortune> find = new io.ebean.Finder<Long, Fortune>( Fortune.class);
-
+	public static enum FortuneType {
+		TERRIBLE,BAD,FINE,GOOD,GREAT
+	}
 	public static final String[] TMP_MESSAGES = new String[]{
 			"A bad random number generator: 1, 1, 1, 1, 1, 4.33e+67, 1, 1, 1",
 			"A computer program does what you tell it to do, not what you want it to do.",
@@ -38,7 +33,6 @@ public class Fortune extends Model implements Comparable<Fortune> {
 		return new Fortune( random.nextInt(10000)+1, TMP_MESSAGES[random.nextInt(TMP_MESSAGES.length-1)] );
 	}
 	
-	@Id
 	public int id;
 	
 	public String message;
