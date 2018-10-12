@@ -8,6 +8,10 @@
 	<version>1.0.0</version>
 	<name>proteus-example</name>
 	<url>http://maven.apache.org</url>
+	<properties>
+		<proteus.version>0.3.4-SNAPSHOT</proteus.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 	<build>
 		<resources>
 			<resource>
@@ -139,13 +143,9 @@
 		<dependency>
 			<groupId>io.sinistral</groupId>
 			<artifactId>proteus-core</artifactId>
-			<version>0.3.3-SNAPSHOT</version>
+			<version>${proteus.version}</version>
 		</dependency>
 	</dependencies>
-	<properties>
-		<rocker.version>0.18.0</rocker.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
 	<repositories>
 		<repository>
 			<id>oss-sonatype</id>
