@@ -14,11 +14,13 @@ public class ExampleApplication extends ProteusApplication
         
         ExampleApplication app = new ExampleApplication();
         
-        app.addService(io.sinistral.proteus.services.SwaggerService.class);
+        app.addService(io.sinistral.proteus.services.OpenAPIService.class);
 		 
 		app.addService(io.sinistral.example.services.TimeService.class);
   
 		app.addModule(io.sinistral.example.modules.TimeModule.class);
+
+		app.addModule(io.sinistral.example.modules.SecurityModule.class);
 
 		app.addController(Examples.class);  
 		

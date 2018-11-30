@@ -47,7 +47,6 @@ public class TimeService extends BaseService
 	{
  		super.startUp();
  		
- 		log.info("Starting up " + this.getClass().getSimpleName());
 	}
 	 
 
