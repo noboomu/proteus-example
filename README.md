@@ -3,6 +3,8 @@
 
 This project demonstrates a number of Proteus's features.
 
+[Pac4j](https://github.com/pac4j/pac4j) integration with Github OAuth is included.
+
 All configuration is done through the `application.conf` configuration file.
 
 Getting Started
@@ -12,8 +14,7 @@ Getting Started
 
 - Make sure [maven][apache_maven] is installed on your system.
 - Run `mvn package exec:exec` in the root directory.
-- Open [http://localhost:8090/v1/swagger](http://localhost:8090/v1/swagger) in your browser.
-- Open [http://localhost:8090/v1/swagger/redoc](http://localhost:8090/v1/swagger/redoc) for a pretty version of your API.
+- Open [http://localhost:8090/v1/openapi](http://localhost:8090/v1/openapi) in your browser.
 
 
 
