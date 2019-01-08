@@ -95,8 +95,11 @@
 				</executions>
 				 
 				 
-				 <configuration>
-				 <successCodes>0,137</successCodes>
+				<configuration>
+				<successCodes>
+					<successCode>0</successCode>
+					<successCode>137</successCode>
+				</successCodes>
 					<executable>java</executable>
 					<arguments>
 						<argument>-Dlogback.configurationFile=${project.build.directory}/conf/logback.xml</argument>
