@@ -7,14 +7,13 @@ import java.time.Clock;
 import java.time.Instant;
 import java.time.LocalDate;
 
+import io.sinistral.proteus.services.DefaultService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.inject.Binder;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-
-import io.sinistral.proteus.services.BaseService;
 
 /**
  * @author jbauer
@@ -23,7 +22,7 @@ import io.sinistral.proteus.services.BaseService;
 
 
 @Singleton
-public class TimeService extends BaseService
+public class TimeService extends DefaultService
 {
 	private static Logger log = LoggerFactory.getLogger(TimeService.class.getCanonicalName());
 

@@ -14,7 +14,7 @@ public class ExampleApplication extends ProteusApplication
         
         ExampleApplication app = new ExampleApplication();
         
-        app.addService(io.sinistral.proteus.services.OpenAPIService.class);
+        app.addService(io.sinistral.proteus.openapi.services.OpenAPIService.class);
 		 
 		app.addService(io.sinistral.example.services.TimeService.class);
   

@@ -4,7 +4,7 @@ if [ -f 'pid.file' ]; then
     PID=`cat pid.file`
     if [[ ! -z "$PID" ]]; then
         echo "killing $PID"
-        kill -- -$PID 
+        kill -- -$PID
         pkill -KILL -P $PID
     fi
     echo "killing $PID 2"
@@ -12,6 +12,6 @@ if [ -f 'pid.file' ]; then
 fi
 
 
-set -xe 
+set -xe
 mvn exec:exec &
 echo $! > pid.file

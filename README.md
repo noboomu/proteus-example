@@ -20,10 +20,9 @@ Getting Started
 
 Hot Reloading
 ----------------
-Make sure both [Watchman][facebook_watchman] and the [pywatchman python package][pywatchman] are installed.
+Make sure [entr][entr] is installed.
 
 Run `./scripts/run.sh`.
 
-[facebook_watchman]: https://facebook.github.io/watchman/docs/install.html
-[pywatchman]: https://pypi.org/project/pywatchman/
+[entr]: http://eradman.com/entrproject/
 [apache_maven]: http://maven.apache.org/install.html
