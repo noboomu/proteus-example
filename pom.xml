@@ -5,10 +5,11 @@
     <groupId>io.sinistral</groupId>
     <artifactId>proteus-example</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.2</version>
+    <version>1.0.0</version>
     <name>proteus-example</name>
+    <url>http://maven.apache.org</url>
     <properties>
-        <proteus.version>0.4.3-SNAPSHOT</proteus.version>
+        <proteus.version>0.4.1</proteus.version>
         <pac4j.version>3.4.0</pac4j.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -163,5 +164,25 @@
             <version>${pac4j.version}</version>
         </dependency>
     </dependencies>
-
+    <repositories>
+        <repository>
+            <id>oss-sonatype</id>
+            <name>oss-sonatype</name>
+            <url>https://oss.sonatype.org/content/groups/public/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>oss-sonatype-snapshots</id>
+            <name>Sonatype Snapshots</name>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </repository>
+    </repositories>
 </project>
