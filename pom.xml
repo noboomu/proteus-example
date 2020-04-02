@@ -9,7 +9,7 @@
     <name>proteus-example</name>
     <url>http://maven.apache.org</url>
     <properties>
-        <proteus.version>0.4.4-SNAPSHOT</proteus.version>
+        <proteus.version>0.4.5</proteus.version>
 
         <pac4j.version>3.4.0</pac4j.version>
 
